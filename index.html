@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Areum's 데일리플랜</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&display=swap");
+
+    * {
+      font-family: "Hahmlet", serif;
+    }
+
+    .bg {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bg-grid.png');
+      background-position: center;
+      background-size: cover;
+      margin: auto;
+      width: 360px;
+    }
+
+    .title {
+      background-color: tomato;
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      padding: 4px 14px;
+    }
+
+    .bucket {
+      width: 160px;
+      height: 160px;
+      background-position: center;
+      background-size: cover;
+
+    }
+
+    .img1 {
+      background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-blue.png
+ ');
+
+      }
+
+      .img2 {
+        background-image: url('https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/bucket-lightblue.png');
+      }
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/bucketList/sparta-bucketlist.css" />
+
+</head>
+
+<body class="bg center">
+  <h1 class="title">Daily plans ❤︎</h1>
+  <p class='msg center'>한번 지켜 보지 않을래?</p>
+  <p class='msg center'>나 아직 젊어! 멋져!</p>
+  <p class='msg center'>미래에 불안함 때문에 지금 배울기회를 놓치지 말자</p>
+  <div class="flex-row wrap">
+    <div class='bucket img1 center'>7시:기상 & 잠깨기 👀</div>
+    <div class='bucket img2 center'>8:40까지 코어운동 & 걷기🏃🏼‍♀️🏃🏼🚶🏻‍♀️</div>
+    <div class='bucket img2 center'>9시 배움의시간 시작! 📚🧐</div>
+    <div class='bucket img1 center'>12시 단이와 산책 🐾 & 점심시간 🍽️🥗🍱</div>
+    <div class='bucket img1 center'>하루1시간 이상 영어공부📖🤓</div>
+    <div class='bucket img2 center'> Don't give up!!! 긍정적인 마무리 일기 😂🤭😏</div>
+  </div>
+  <script>
+    // 페이지 로드 시 이전 상태 복원
+    document.addEventListener("DOMContentLoaded", (event) => {
+      const buckets = document.querySelectorAll(".bucket");
+      buckets.forEach((bucket, index) => {
+        // 로컬 스토리지에서 상태 읽기
+        const isDone = localStorage.getItem("bucket" + index) === "done";
+        if (isDone) {
+          bucket.classList.add("done");
+        }
+      });
+    });
+
+    // 버킷 리스트 클릭 이벤트
+    const buckets = document.querySelectorAll(".bucket");
+    buckets.forEach((bucket, index) => {
+      bucket.addEventListener("click", function () {
+        // 클래스 토글
+        bucket.classList.toggle("done");
+
+        // 로컬 스토리지에 상태 저장
+        if (bucket.classList.contains("done")) {
+          localStorage.setItem("bucket" + index, "done");
+        } else {
+          localStorage.setItem("bucket" + index, "");
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
